@@ -1,0 +1,45 @@
+.entire {
+  padding: 300px;
+  display: flex;
+  background-color: #fffdec;
+}
+
+.contentStyle {
+  display: block;
+  align-items: center;
+  place-items: center;
+}
+
+.pStyle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.inputStyle {
+  height: 30px;
+}
+
+.btnStyle {
+  display: align;
+  height: 40px;
+  background-color: #86a788;
+  align-items: flex-end;
+}
+
+.titleStyle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.formStyle {
+  width: 900px;
+  display: align;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: #ffe2e2;
+  border-radius: 10px;
+}
