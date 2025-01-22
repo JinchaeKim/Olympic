@@ -1,6 +1,6 @@
 .entire {
   padding: 300px;
-  display: flex;
+  /* display: flex; */
   background-color: #fffdec;
 }
 
@@ -21,11 +21,17 @@
   height: 30px;
 }
 
+.btnGroupStyle {
+  display: flex;
+  align-items: flex-end;
+}
+
 .btnStyle {
   display: align;
   height: 40px;
   background-color: #86a788;
   align-items: flex-end;
+  margin: 5px;
 }
 
 .titleStyle {
@@ -42,4 +48,10 @@
   justify-content: center;
   background-color: #ffe2e2;
   border-radius: 10px;
+  padding: 20px;
+}
+
+/* list - table */
+.tableBody {
+  display: flex;
 }

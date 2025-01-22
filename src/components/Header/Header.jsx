@@ -6,17 +6,15 @@ export const Header = () => {
   const [gold, setGold] = useState(0);
   const [silver, setSilver] = useState(0);
   const [bronze, setBronze] = useState(0);
+  const [country, setCountry] = useState("");
 
-  // const addNewItem = (e) => {
-  //   e.preventDefault();
-  // };
+  const addNewItem = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div className={styles.entire}>
-      <form
-        className={styles.formStyle}
-        // onSubmit={addNewItem}
-      >
+      <form className={styles.formStyle} onSubmit={addNewItem}>
         <h1 className={styles.titleStyle}>2024 파리 올림픽</h1>
         <div
           style={{
@@ -71,23 +69,34 @@ export const Header = () => {
               }}
             />
           </div>
-          <button
-            type="submit"
-            onSubmit={(e) => {
-              console.log(e.target.nation);
-              console.log(gold);
-              console.log(silver);
-              console.log(bronze);
-            }}
-            className={styles.btnStyle}
-          >
-            국가 추가
-          </button>
-          <button type="submit" className={styles.btnStyle}>
-            업데이트
-          </button>
+          <div className={styles.btnGroupStyle}>
+            <button type="submit" className={styles.btnStyle}>
+              국가 추가
+            </button>
+            <button type="submit" className={styles.btnStyle}>
+              업데이트
+            </button>
+          </div>
         </div>
       </form>
+      {/* 리스트 부분 작성 start */}
+      <table>
+        <thead>
+          <tr>
+            <th>국가명</th>
+            <th>금메달</th>
+            <th>은메달</th>
+            <th>동메달</th>
+            <th>액션</th>
+          </tr>
+        </thead>
+        <tbody className={styles.tableBody}>
+          <tr>대한민국</tr>
+          <tr>1</tr>
+          <tr>2</tr>
+          <tr>3</tr>
+        </tbody>
+      </table>
     </div>
   );
 };
