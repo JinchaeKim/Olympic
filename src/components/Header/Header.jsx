@@ -1,37 +1,11 @@
-import { useState } from "react";
 import styles from "./Header.module.css";
 
-export const Header = () => {
-  const initialState = [
-    { id: 1, nationName: "대한민국", gold: 6, silver: 4, bronze: 7 },
-  ];
-
-  const [nationName, setNationName] = useState("");
-  const [gold, setGold] = useState(0);
-  const [silver, setSilver] = useState(0);
-  const [bronze, setBronze] = useState(0);
-  const [newNations, setNewNations] = useState(initialState);
-
-  const addNewItem = (e) => {
-    e.preventDefault();
-    const newCountry = { id: Date.now(), nationName, gold, silver, bronze };
-    const newArray = [...newNations, newCountry];
-    setNewNations(newArray);
-    console.log(newArray);
-
-    // setNationName("");
-    // setGold("");
-    // setSilver("");
-    // setBronze("");
-  };
-
-  const removeNation = (id) => {
-    const filteredNation = newNations.filter((i) => {
-      return i.id !== id;
-    });
-    setNewNations(filteredNation);
-  };
-
+export const Header = ({ nation, setNation, addNewItem, warningMessage }) => {
+  // const [nationName, setNationName] = useState("");
+  // const [gold, setGold] = useState(0);
+  // const [silver, setSilver] = useState(0);
+  // const [bronze, setBronze] = useState(0);
+  console.log(nation);
   return (
     <div className={styles.entire}>
       <form className={styles.formStyle} onSubmit={addNewItem}>
@@ -47,9 +21,9 @@ export const Header = () => {
             <input
               type="text"
               className={styles.inputStyle}
-              value={nationName}
+              value={nation.name}
               onChange={(e) => {
-                setNationName(e.target.value);
+                setNation({ ...nation, name: e.target.value });
               }}
             />
           </div>
@@ -59,9 +33,9 @@ export const Header = () => {
               type="number"
               min={0}
               className={styles.inputStyle}
-              valsue={gold}
+              value={nation.gold}
               onChange={(e) => {
-                setGold(e.target.value);
+                setNation({ ...nation, gold: e.target.value });
               }}
             />
           </div>
@@ -71,9 +45,9 @@ export const Header = () => {
               type="number"
               min={0}
               className={styles.inputStyle}
-              value={silver}
+              value={nation.silver}
               onChange={(e) => {
-                setSilver(e.target.value);
+                setNation({ ...nation, silver: e.target.value });
               }}
             />
           </div>
@@ -83,9 +57,9 @@ export const Header = () => {
               type="number"
               min={0}
               className={styles.inputStyle}
-              value={bronze}
+              value={nation.bronze}
               onChange={(e) => {
-                setBronze(e.target.value);
+                setNation({ ...nation, bronze: e.target.value });
               }}
             />
           </div>
@@ -99,40 +73,6 @@ export const Header = () => {
           </div>
         </div>
       </form>
-      {/* 리스트 부분 start */}
-      <table>
-        <thead>
-          <tr>
-            <th>국가명</th>
-            <th>금메달</th>
-            <th>은메달</th>
-            <th>동메달</th>
-            <th>액션</th>
-          </tr>
-        </thead>
-      </table>
-      {/* mapping */}
-      {newNations.map(function (newNation) {
-        return (
-          <tbody key={newNation.id} className={styles.tableBody}>
-            <tr>
-              <td>{newNations.nationName}</td>
-              <td>{newNations.gold}</td>
-              <td>{newNations.silver}</td>
-              <td>{newNations.bronze}</td>
-              <td>
-                <button
-                  onClick={() => {
-                    removeNation(newNation.id);
-                  }}
-                >
-                  삭제
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        );
-      })}
     </div>
   );
 };
