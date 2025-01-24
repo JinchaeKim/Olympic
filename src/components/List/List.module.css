@@ -1,3 +1,30 @@
-.tableBody {
-  display: flex;
+.table {
+  display: grid;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.tr {
+  width: 184px;
+  background-color: rgb(79, 146, 87);
+  margin-left: 50%;
+  margin-right: 50%;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.td {
+  text-align: center;
+  width: 184px;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  border-radius: 0px 0px 5px 5px;
+}
+
+.deleteBtn {
+  width: 65px;
+  height: 30px;
+  padding: 3px;
+  color: white;
+  background-color: rgb(252, 112, 112);
 }
