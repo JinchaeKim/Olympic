@@ -1,6 +1,6 @@
 import styles from "./List.module.css";
 
-const List = ({ newNations, removeNation }) => {
+const List = ({ nationList, removeNation }) => {
   return (
     <table className={styles.table}>
       <thead>
@@ -15,19 +15,19 @@ const List = ({ newNations, removeNation }) => {
 
       <tbody>
         {/* mapping start*/}
-        {newNations.map(function (newNations) {
+        {nationList.map(function (nation) {
           return (
-            <tr key={newNations.id}>
-              <td className={styles.td}>{newNations.name}</td>
-              <td className={styles.td}>{newNations.gold}</td>
-              <td className={styles.td}>{newNations.silver}</td>
-              <td className={styles.td}>{newNations.bronze}</td>
+            <tr key={nation.id}>
+              <td className={styles.td}>{nation.name}</td>
+              <td className={styles.td}>{nation.gold}</td>
+              <td className={styles.td}>{nation.silver}</td>
+              <td className={styles.td}>{nation.bronze}</td>
               <td className={styles.td}>
                 <button
                   className={styles.deleteBtn}
                   onClick={() => {
                     {
-                      removeNation(newNations.id);
+                      removeNation(nation.id);
                     }
                   }}
                 >

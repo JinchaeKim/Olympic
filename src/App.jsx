@@ -17,11 +17,6 @@ const App = () => {
 
   const [nationList, setNationList] = useState(defaultNations);
 
-  // 리스트의 name만 추출
-  const listNames = nationList.map((e) => {
-    return e.name;
-  });
-
   const addNewItem = (e) => {
     e.preventDefault();
     const newCountry = { ...nation, id: Date.now() };
@@ -35,15 +30,19 @@ const App = () => {
       alert("값을 입력해주세요.");
       return;
     }
-    setNationList(newArray);
-    setNation(defaultNation);
 
     // 중복 방지 로직
-    const isInList = (nation) => {
-      const isInListCheck = listNames.includes(nation.name);
-      isInListCheck ? alert("이미 등록된 국가입니다.") : setNationList(nation);
-      isInList();
+    const isInList = (nationEl) => {
+      const isInListCheck = nationList.find(() => {
+        if (nationEl.name === nation.name) {
+          return alert("이미 등록된 국가입니다.");
+        }
+        return;
+      });
     };
+
+    setNationList(newArray);
+    setNation(defaultNation);
   };
 
   const removeNation = (id) => {
@@ -64,39 +63,21 @@ const App = () => {
     return;
   };
 
-  console.log(nationList); // [] / [[Prototype]]: Array(0)
-  console.log(typeof nationList); //object
-
-  if (Array.isArray(nationList)) {
-    console.log("배열입니다:", nationList); // 배열입니다.
-  } else {
-    console.log("배열이 아닙니다.");
-  }
-
-  // // 리스트의 name만 추출 -> 20으로 이동
-  // const listNames = nationList.map((e) => {
-  //   return e.name;
-  // });s
-
-  console.log(listNames); //  [] / [[Prototype]]: Array(0)
-  console.log(typeof listNames); // object
-  console.log(nation.name);
-  console.log(typeof nation.name); // string
-  console.log(nation); // 미작성:초기값
-  console.log(typeof nation); //object
-
   // 업데이트 로직
-  const upDate = (nation) => {
-    // 업데이트 버튼 클릭 시 오류 여부 판정
-    // nation의 값이 falsy 하거나 nation.name의 타입이 문자열이 아닐 때
-    if (!nation || typeof nation.name !== "string") {
-      alert("유효하지 않은 입력입니다.");
-      return;
-    }
+  const upDate = () => {
+    const findNation = nationList.find((nationEl) => {
+      return nationEl.name === nation.name;
+    });
+    const mapNation = nationList.map((nationEl) => {
+      if (nationEl.name === findNation.name) {
+        return { ...nation, id: nationEl.id };
+      }
+      return nationEl;
+    });
+    setNationList(mapNation);
+    console.log("findNation", findNation);
 
-    const upDateCheck = listNames.includes(nation.name);
-
-    upDateCheck ? setNationList(nation) : alert("등록되지 않은 국가입니다.");
+    console.log(mapNation);
   };
 
   //UI 영역
@@ -109,7 +90,7 @@ const App = () => {
         warnningMessage={warningMessage}
         upDate={upDate}
       />
-      <List newNations={nationList} removeNation={removeNation} />
+      <List nationList={nationList} removeNation={removeNation} />
     </div>
   );
 };
