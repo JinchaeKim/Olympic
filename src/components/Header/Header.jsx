@@ -11,7 +11,7 @@ export const Header = ({
   // const [gold, setGold] = useState(0);
   // const [silver, setSilver] = useState(0);
   // const [bronze, setBronze] = useState(0);
-  // console.log(nation);
+
   return (
     <div>
       <form className={styles.formStyle} onSubmit={addNewItem}>

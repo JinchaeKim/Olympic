@@ -32,17 +32,13 @@ const App = () => {
     }
 
     // 중복 방지 로직
-    const isInList = (nationEl) => {
-      const isInListCheck = nationList.find(() => {
-        if (nationEl.name === nation.name) {
-          return alert("이미 등록된 국가입니다.");
-        }
-        return;
-      });
-    };
-
-    setNationList(newArray);
-    setNation(defaultNation);
+    // some 사용
+    if (nationList.some((nationEl) => nationEl.name === nation.name)) {
+      alert("이미 등록된 국가명입니다.");
+    } else {
+      setNationList(newArray);
+      setNation(defaultNation);
+    }
   };
 
   const removeNation = (id) => {
