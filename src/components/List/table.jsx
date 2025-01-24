@@ -1,6 +1,12 @@
 import styles from "./List.module.css";
 
 const List = ({ nationList, removeNation }) => {
+  if (nationList.length === 0)
+    return (
+      <>
+        <div>아직 값이 추가되지 않았습니다! 메달 정보를 입력해주세요.</div>
+      </>
+    );
   return (
     <table className={styles.table}>
       <thead>

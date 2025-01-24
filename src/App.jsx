@@ -3,7 +3,7 @@ import { Header } from "./components/Header/Header";
 import List from "./components/List/table";
 import styles from "./components/Header/Header.module.css";
 
-//자바스크립트 영역
+//JS 영역
 const defaultNations = [];
 const App = () => {
   const defaultNation = {
@@ -17,8 +17,21 @@ const App = () => {
 
   const [nationList, setNationList] = useState(defaultNations);
 
+  // 리스트 추가 로직
   const addNewItem = (e) => {
     e.preventDefault();
+
+    // 금메달 기준 내림차순 수정 중!!!!!!
+    const goldList = nationList.map((nationEl) => {
+      return nationEl.gold;
+    });
+
+    const goldRanking = goldList.sort((a, b) => {
+      return b - a;
+    });
+
+    setNationList(goldRanking);
+
     const newCountry = { ...nation, id: Date.now() };
     const newArray = [...nationList, newCountry];
     if (
@@ -37,25 +50,17 @@ const App = () => {
     } else {
       setNationList(newArray);
     }
+
     setNation(defaultNation);
   };
 
+  // 리스트 삭제 로직
   const removeNation = (id) => {
     const filteredNation = nationList.filter((i) => {
       return i.id !== id;
     });
     alert("정말 삭제하시겠습니까?");
     setNationList(filteredNation);
-  };
-
-  // 폼 하단 경고 메세지 로직 수정 중!!!!!!
-  const warningMessage = (nationList) => {
-    if (nationList.length === 0) {
-      <p>"아직 값이 추가되지 않았습니다! 메달 정보를 입력해주세요."</p>;
-    } else {
-      addNewItem();
-    }
-    return;
   };
 
   // 업데이트 로직
@@ -72,8 +77,11 @@ const App = () => {
     setNationList(mapNation);
     console.log("findNation", findNation);
 
-    console.log(mapNation);
-    setNation(defaultNation);
+    // 존재하지 않는 국가 로직  수정 중!!!!!!
+    if (!nationList.some((nationEl) => nationEl.name === nation.name)) {
+      alert("존재하지 않는 국가입니다.");
+    }
+    return setNation(defaultNation);
   };
 
   //UI 영역
@@ -83,7 +91,6 @@ const App = () => {
         nation={nation}
         setNation={setNation}
         addNewItem={addNewItem}
-        warnningMessage={warningMessage}
         upDate={upDate}
       />
       <List nationList={nationList} removeNation={removeNation} />

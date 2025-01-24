@@ -1,12 +1,6 @@
 import styles from "./Header.module.css";
 
-export const Header = ({
-  nation,
-  setNation,
-  addNewItem,
-  upDate,
-  warningMessage,
-}) => {
+export const Header = ({ nation, setNation, addNewItem, upDate }) => {
   return (
     <div>
       <form className={styles.formStyle} onSubmit={addNewItem}>
@@ -31,11 +25,14 @@ export const Header = ({
           <div className={styles.contentStyle}>
             <p className={styles.pStyle}>금메달</p>
             <input
-              type="number"
-              min={0}
+              type="text"
               className={styles.inputStyle}
               value={nation.gold}
               onChange={(e) => {
+                if (Number.isNaN(+e.target.value) || +e.target.value < 0) {
+                  alert("숫자만 입력하세요.");
+                  return;
+                }
                 setNation({ ...nation, gold: e.target.value });
               }}
             />
@@ -43,11 +40,14 @@ export const Header = ({
           <div className={styles.contentStyle}>
             <p className={styles.pStyle}>은메달</p>
             <input
-              type="number"
-              min={0}
+              type="text"
               className={styles.inputStyle}
               value={nation.silver}
               onChange={(e) => {
+                if (Number.isNaN(+e.target.value) || +e.target.value < 0) {
+                  alert("숫자만 입력하세요.");
+                  return;
+                }
                 setNation({ ...nation, silver: e.target.value });
               }}
             />
@@ -55,11 +55,14 @@ export const Header = ({
           <div className={styles.contentStyle}>
             <p className={styles.pStyle}>동메달</p>
             <input
-              type="number"
-              min={0}
+              type="text"
               className={styles.inputStyle}
               value={nation.bronze}
               onChange={(e) => {
+                if (Number.isNaN(+e.target.value) || +e.target.value < 0) {
+                  alert("숫자만 입력하세요.");
+                  return;
+                }
                 setNation({ ...nation, bronze: e.target.value });
               }}
             />
@@ -73,7 +76,6 @@ export const Header = ({
             </button>
           </div>
         </div>
-        {warningMessage}
       </form>
     </div>
   );
