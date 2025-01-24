@@ -7,11 +7,6 @@ export const Header = ({
   upDate,
   warningMessage,
 }) => {
-  // const [nationName, setNationName] = useState("");
-  // const [gold, setGold] = useState(0);
-  // const [silver, setSilver] = useState(0);
-  // const [bronze, setBronze] = useState(0);
-
   return (
     <div>
       <form className={styles.formStyle} onSubmit={addNewItem}>

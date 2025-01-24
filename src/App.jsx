@@ -32,13 +32,12 @@ const App = () => {
     }
 
     // 중복 방지 로직
-    // some 사용
     if (nationList.some((nationEl) => nationEl.name === nation.name)) {
       alert("이미 등록된 국가명입니다.");
     } else {
       setNationList(newArray);
-      setNation(defaultNation);
     }
+    setNation(defaultNation);
   };
 
   const removeNation = (id) => {
@@ -74,6 +73,7 @@ const App = () => {
     console.log("findNation", findNation);
 
     console.log(mapNation);
+    setNation(defaultNation);
   };
 
   //UI 영역
