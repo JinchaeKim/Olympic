@@ -21,14 +21,14 @@ const App = () => {
   const addNewItem = (e) => {
     e.preventDefault();
 
-    // 금메달 기준 내림차순 수정 중!!!!!!
-    const goldList = nationList.map((nationEl) => {
-      return nationEl.gold;
-    });
+    // // 금메달 기준 내림차순 수정 중!!!!!!
+    // const goldList = nationList.map((nationEl) => {
+    //   return nationEl.gold;
+    // });
 
-    const goldRanking = goldList.sort((a, b) => {
-      return b - a;
-    });
+    // const goldRanking = goldList.sort((a, b) => {
+    //   return b - a;
+    // });
 
     setNationList(goldRanking);
 
@@ -65,6 +65,11 @@ const App = () => {
 
   // 업데이트 로직
   const upDate = () => {
+    // 존재하지 않는 국가 로직
+    if (!nationList.some((nationEl) => nationEl.name === nation.name)) {
+      alert("존재하지 않는 국가입니다.");
+    }
+
     const findNation = nationList.find((nationEl) => {
       return nationEl.name === nation.name;
     });
@@ -76,10 +81,6 @@ const App = () => {
     });
     setNationList(mapNation);
 
-    // 존재하지 않는 국가 로직  수정 중!!!!!!
-    if (nationList.some((nationEl) => nationEl.name !== nation.name)) {
-      alert("존재하지 않는 국가입니다.");
-    }
     setNation(defaultNation);
   };
 
