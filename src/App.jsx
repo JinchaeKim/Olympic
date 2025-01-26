@@ -72,16 +72,15 @@ const App = () => {
       if (nationEl.name === findNation.name) {
         return { ...nation, id: nationEl.id };
       }
-      return nationEl;
+      return nationEl; // 업데이트 되지 않는 요소들은 그대로 반환
     });
     setNationList(mapNation);
-    console.log("findNation", findNation);
 
     // 존재하지 않는 국가 로직  수정 중!!!!!!
-    if (!nationList.some((nationEl) => nationEl.name === nation.name)) {
+    if (nationList.some((nationEl) => nationEl.name !== nation.name)) {
       alert("존재하지 않는 국가입니다.");
     }
-    return setNation(defaultNation);
+    setNation(defaultNation);
   };
 
   //UI 영역
