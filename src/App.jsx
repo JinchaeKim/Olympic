@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Header } from "./components/Header/Header";
 import List from "./components/List/List";
-import styles from "./components/Header/Header.module.css";
+import Radio from "./components/Radio/Radio";
+import { OlympicProvider } from "./context/OlympicContext";
 
 //JS 영역
 const defaultNations = [];
@@ -98,32 +99,8 @@ const App = () => {
 
   //UI 영역
   return (
-    <div className={styles.entire}>
-      <h1 className={styles.titleStyle}>2024 파리 올림픽</h1>
-      <div className="radioBtn">
-        <label>
-          <input
-            type="radio"
-            value="gold"
-            checked={sortType === "gold"}
-            onChange={(e) => {
-              setSortType(e.target.value);
-            }}
-          />
-          금메달 순
-        </label>
-        <label>
-          <input
-            type="radio"
-            value="total"
-            checked={sortType === "total"}
-            onChange={(e) => {
-              setSortType(e.target.value);
-            }}
-          />
-          총 메달 순
-        </label>
-      </div>
+    <OlympicProvider>
+      <Radio sortType={setSortType} setSortType={setSortType} />
       <Header
         nation={nation}
         setNation={setNation}
@@ -131,7 +108,7 @@ const App = () => {
         upDate={upDate}
       />
       <List nationList={medalRank} removeNation={removeNation} />
-    </div>
+    </OlympicProvider>
   );
 };
 
