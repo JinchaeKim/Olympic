@@ -1,10 +1,15 @@
-import styles from "./Header.module.css";
+import { useContext } from "react";
+import styles from "../Header/Header.module.css";
+import { OlympicContext } from "../../context/OlympicContext";
+import Radio from "../Radio/Radio";
 
-export const Header = ({ nation, setNation, addNewItem, upDate }) => {
+export const Header = () => {
+  const { nation, setNation, addNewItem, upDate } = useContext(OlympicContext);
   return (
     <div>
+      <h1 className={styles.titleStyle}>2024 파리 올림픽</h1>
+      <Radio />
       <form className={styles.formStyle} onSubmit={addNewItem}>
-        {/* <h1 className={styles.titleStyle}>2024 파리 올림픽</h1> */}
         <div
           style={{
             display: "flex",

@@ -1,10 +1,11 @@
-import React from "react";
-import styles from "./components/Header/Header.module.css";
+import React, { useContext } from "react";
+import styles from "../Radio/Radio.module.css";
+import { OlympicContext } from "../../context/OlympicContext";
 
-const Radio = ({ sortType, setSortType }) => {
+const Radio = () => {
+  const { sortType, setSortType } = useContext(OlympicContext);
   return (
-    <div className={styles.entire}>
-      <h1 className={styles.titleStyle}>2024 파리 올림픽</h1>
+    <>
       <div className="radioBtn">
         <label>
           <input
@@ -29,7 +30,7 @@ const Radio = ({ sortType, setSortType }) => {
           총 메달 순
         </label>
       </div>
-    </div>
+    </>
   );
 };
 

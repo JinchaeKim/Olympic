@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import styles from "./List.module.css";
+import { OlympicContext } from "../../context/OlympicContext";
 
-const List = ({ nationList, removeNation }) => {
-  if (nationList.length === 0)
+const List = () => {
+  const { medalRank, removeNation } = useContext(OlympicContext);
+
+  if (medalRank.length === 0)
     return (
       <>
         <div>아직 값이 추가되지 않았습니다! 메달 정보를 입력해주세요.</div>
@@ -21,7 +25,7 @@ const List = ({ nationList, removeNation }) => {
 
       <tbody>
         {/* mapping start*/}
-        {nationList.map(function (nation) {
+        {medalRank.map(function (nation) {
           return (
             <tr key={nation.id}>
               <td className={styles.td}>{nation.name}</td>
