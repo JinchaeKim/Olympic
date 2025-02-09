@@ -4,7 +4,7 @@ export const Header = ({ nation, setNation, addNewItem, upDate }) => {
   return (
     <div>
       <form className={styles.formStyle} onSubmit={addNewItem}>
-        <h1 className={styles.titleStyle}>2024 파리 올림픽</h1>
+        {/* <h1 className={styles.titleStyle}>2024 파리 올림픽</h1> */}
         <div
           style={{
             display: "flex",
@@ -33,7 +33,7 @@ export const Header = ({ nation, setNation, addNewItem, upDate }) => {
                   alert("숫자만 입력하세요.");
                   return;
                 }
-                setNation({ ...nation, gold: e.target.value });
+                setNation({ ...nation, gold: +e.target.value });
               }}
             />
           </div>
@@ -48,7 +48,7 @@ export const Header = ({ nation, setNation, addNewItem, upDate }) => {
                   alert("숫자만 입력하세요.");
                   return;
                 }
-                setNation({ ...nation, silver: e.target.value });
+                setNation({ ...nation, silver: +e.target.value });
               }}
             />
           </div>
@@ -63,7 +63,7 @@ export const Header = ({ nation, setNation, addNewItem, upDate }) => {
                   alert("숫자만 입력하세요.");
                   return;
                 }
-                setNation({ ...nation, bronze: e.target.value });
+                setNation({ ...nation, bronze: +e.target.value });
               }}
             />
           </div>
