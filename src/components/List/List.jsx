@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import styles from "./List.module.css";
-import { OlympicContext } from "../../context/OlympicContext";
 
 const List = () => {
   const { medalRank, removeNation } = useContext(OlympicContext);
